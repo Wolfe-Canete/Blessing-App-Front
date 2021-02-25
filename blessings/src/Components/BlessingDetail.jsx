@@ -1,6 +1,5 @@
-import React from 'react';
 
-export default function BlessingDetail(props) {
+export default function BlessingDetail() {
     return (
         <div>
             <h1>Testing</h1>
