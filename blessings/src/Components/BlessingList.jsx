@@ -19,10 +19,11 @@ export default function BlessingList() {
     // }
 
     const fetchBlessings = async () => {
-        await fetch('http://127.0.0.1:8000/blessings/')
+        await fetch('http://localhost:8000/blessings/')
         .then(res => res.json())
         .then(res => {
             setBlessings(res)
+            console.log(res)
         })
     }
     useEffect(() => {
@@ -32,10 +33,13 @@ export default function BlessingList() {
 
     return(
         <div>
-            <h1>TEST</h1>
             {blessings.map(blessing => {
                 return (
-                    <h1>{blessing.author}</h1>
+                    <div>
+                        <h2>{blessing.author}</h2>
+                        <h3>{blessing.title}</h3>
+                        <h6>{blessing.content}</h6>
+                    </div>
                 )
             })}
         </div>
