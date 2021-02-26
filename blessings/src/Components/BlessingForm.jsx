@@ -22,9 +22,16 @@ export default function BlessingForm() {
     return (
         <form onSubmit={handleSubmit}>
             <label>
-                Count Your Blessings:
+                Title your blessing/Author your blessing
                 <input type='text' name='name'/>
             </label>
+            <textarea 
+                id="message"
+                cols="30"
+                rows="15"
+                onChange={handleChange}
+                value={formState.message}
+                >Blessing Here</textarea>
             <input type='submit' value='Submit'/>
         </form>
 
