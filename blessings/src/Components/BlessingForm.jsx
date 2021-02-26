@@ -5,7 +5,7 @@ export default function BlessingForm() {
         author:'',
         title:'',
         cont:''
-    }
+    } 
 
     const [formState, setFormState] = useState(initialState)
 

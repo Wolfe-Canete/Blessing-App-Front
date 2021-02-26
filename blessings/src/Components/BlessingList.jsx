@@ -1,22 +1,8 @@
 import { useState, useEffect } from 'react';
+import Card from "react-bootstrap/Card";
 
 export default function BlessingList() {
     const [blessings, setBlessings] = useState([])
-
-    // useEffect(() => fetchBlessings(), [])
-
-    // const fetchBlessings = async () => {
-    //     try {
-    //         const url = 
-    //             process.env.NODE_ENV === 'production'
-    //                 ? ''
-    //                 : 'http://localhost:8000/blessings'
-    //         const blessingList = await axios(url);
-    //         setBlessings(blessingList.data)
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
 
     const fetchBlessings = async () => {
         await fetch('http://localhost:8000/blessings/')
@@ -30,15 +16,25 @@ export default function BlessingList() {
         fetchBlessings()
     }, []);
 
-
     return(
         <div>
-            {blessings.map(blessing => {
+            {blessings && blessings.map(blessing => {
                 return (
                     <div>
-                        <h2>{blessing.author}</h2>
-                        <h3>{blessing.title}</h3>
-                        <h6>{blessing.content}</h6>
+                      {/* <h1>PostCard</h1> */}
+                      <Card style={{ width: "18rem" }}>
+                        <Card.Body>
+                          <Card.Title>{blessing.title}</Card.Title>
+                          <Card.Subtitle className="mb-2 text-muted">
+                            {blessing.author}
+                          </Card.Subtitle>
+                          <Card.Text>
+                            {blessing.content}
+                          </Card.Text>
+                          <Card.Link href="#">Card Link</Card.Link>
+                          {/* <Card.Link href="#">Another Link</Card.Link> */}
+                        </Card.Body>
+                      </Card>
                     </div>
                 )
             })}
