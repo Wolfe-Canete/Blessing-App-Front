@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Card from "react-bootstrap/Card";
+import PostStyle from './styles/PostStyle.css'
 
 export default function BlessingList() {
     const [blessings, setBlessings] = useState([])
@@ -17,12 +18,12 @@ export default function BlessingList() {
     }, []);
 
     return(
-        <div>
+        <div className="cards">
             {blessings && blessings.map(blessing => {
                 return (
                     <div>
                       {/* <h1>PostCard</h1> */}
-                      <Card style={{ width: "18rem" }}>
+                      <Card style={{ width: "20rem" }}>
                         <Card.Body>
                           <Card.Title>{blessing.title}</Card.Title>
                           <Card.Subtitle className="mb-2 text-muted">
