@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Card from "react-bootstrap/Card";
-import PostStyle from './styles/PostStyle.css'
+import './styles/ListStyle.css'
 
 export default function BlessingList() {
     const [blessings, setBlessings] = useState([])
