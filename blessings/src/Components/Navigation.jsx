@@ -1,6 +1,6 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
-import NavStyle from "./styles/NavStyle.css";
+import "./styles/NavStyle.css";
 
 export default function Navigation() {
   return (
@@ -12,7 +12,7 @@ export default function Navigation() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="#features">New Blessing</Nav.Link>
+            <Nav.Link href="/blessings/new">New Blessing</Nav.Link>
             <Nav.Link href="#pricing">Pricing</Nav.Link>
           </Nav>
           <Nav>
