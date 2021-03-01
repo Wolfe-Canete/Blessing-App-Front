@@ -1,12 +1,12 @@
 import http from "../../http-common.jsx";
-const host = "https://nameless-citadel-52825.herokuapp.com/blessings/"
+const host = "https://nameless-citadel-52825.herokuapp.com/blessings"
 
 const getAll = () => {
   return http.get(`${host}/`);
 };
 
 const get = id => {
-  return http.get(`/${host}/${id}`);
+  return http.get(`${host}/${id}`);
 };
 
 const create = data => {

@@ -3,8 +3,8 @@ import { useState } from "react";
 import "./styles/FormStyle.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-// import axios from "axios";
 import APIDataService from "../Components/Services/blessed.service";
+
 export default function BlessingForm(props) {
   const initialState = {
     author: "",
@@ -13,11 +13,11 @@ export default function BlessingForm(props) {
   };
   const [blessing, setBlessing] = useState(initialState);
   const [submitted, setSubmitted] = useState(false);
-  // const history = useHistory();
+  
   const handleChange = (event) => {
-    const { name, value } = event.target;
-    setBlessing({ ...blessing, [name]: value });
+    setBlessing({ ...blessing, [event.target.id]: event.target.value });
   };
+
   const saveBlessing = () => {
     var data = {
       author: blessing.author,
@@ -26,6 +26,7 @@ export default function BlessingForm(props) {
     };
     APIDataService.create(data)
       .then((res) => {
+        console.log(res)
         setBlessing({
           id: res.data.id,
           author: res.data.author,
@@ -39,10 +40,12 @@ export default function BlessingForm(props) {
         console.log(e);
       });
   };
+
   const newBlessing = () => {
     setBlessing(initialState);
     setSubmitted(false);
   };
+  
   return (
     <div className="new-blessing">
       {submitted ? (
@@ -57,8 +60,8 @@ export default function BlessingForm(props) {
           <Form.Group className="input-author">
             <Form.Label>Author</Form.Label>
             <Form.Control
+              id='author'
               type="input"
-              // value={blessing.author}
               placeholder="Author Name"
               onChange={handleChange}
             />
@@ -66,8 +69,8 @@ export default function BlessingForm(props) {
           <Form.Group className="input-title">
             <Form.Label>Title</Form.Label>
             <Form.Control
+              id='title'
               type="input"
-              // value={blessing.title}
               placeholder="Blessing's Title"
               onChange={handleChange}
             />
@@ -75,9 +78,9 @@ export default function BlessingForm(props) {
           <Form.Group className="input-blessing">
             <Form.Label>Blessing</Form.Label>
             <Form.Control
+              id='content'
               as="textarea"
               rows={4}
-              // value={blessing.content}
               placeholder="Count your blessings"
               onChange={handleChange}
             />
