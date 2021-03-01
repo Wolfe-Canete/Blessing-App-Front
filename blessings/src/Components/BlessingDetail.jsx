@@ -22,9 +22,9 @@ export default function BlessingDetail({ match }) {
   };
   
 
-  const handleDelete = async () => {
+  const handleDelete = async (id) => {
     try {
-      const url = "https://nameless-citadel-52825.herokuapp.com/blessings/";
+      const url = `https://nameless-citadel-52825.herokuapp.com/blessings/${match.params.id}`;
       await axios.delete(url);
       //   history.push("/blessings");
     } catch (error) {
