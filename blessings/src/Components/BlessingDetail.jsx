@@ -1,37 +1,53 @@
-import Card from 'react-bootstrap/Card'
-import { useState, useEffect } from 'react'
+import Card from "react-bootstrap/Card";
+import { useState, useEffect } from "react";
+import { Button } from "react-bootstrap";
+import axios from "axios";
 
 export default function BlessingDetail({ match }) {
-    const [blessedDetails, setblessedDetails] = useState(null);
+  const [blessedDetails, setblessedDetails] = useState(null);
+  
+  useEffect(() => {
+    fetchBlessingDetails();
+  });
 
-    const fetchBlessingedDetails = async () => {
-        await fetch(`https://nameless-citadel-52825.herokuapp.com/blessings/${match.params.id}`)
-        .then(res => res.json())
-        .then(res => {
-            console.log(res)
-            setblessedDetails(res)
-        })
+  const fetchBlessingDetails = async (id) => {
+    try {
+      const url = `https://nameless-citadel-52825.herokuapp.com/blessings/${match.params.id}`;
+
+      const response = await axios(url);
+      setblessedDetails(response.data);
+    } catch (error) {
+      console.log(error);
     }
-    useEffect(() => {
-        fetchBlessingedDetails()
-    },);
+  };
+  
 
-    return(
-        blessedDetails && (
-            <div>
-                <Card style={{ width: "20rem" }}>
-                    <Card.Body>
-                        <Card.Title>{blessedDetails.title}</Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted">
-                        {blessedDetails.author}
-                    </Card.Subtitle>
-                    <Card.Text>
-                        {blessedDetails.content}
-                    </Card.Text>
-                    </Card.Body>
-                </Card>
-            </div>
-        )
+  const handleDelete = async (id) => {
+    try {
+      const url = `https://nameless-citadel-52825.herokuapp.com/blessings/${match.params.id}`;
+      await axios.delete(url);
+      //   history.push("/blessings");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return (
+    blessedDetails && (
+      <div>
+        <Card style={{ width: "30rem" }}>
+          <Card.Body>
+            <Card.Title>{blessedDetails.title}</Card.Title>
+            <Card.Subtitle className="mb-2 text-muted">
+              {blessedDetails.author}
+            </Card.Subtitle>
+            <Card.Text>{blessedDetails.content}</Card.Text>
+          </Card.Body>
+        </Card>
+        <Button className="btn btn-Success" onClick={handleDelete}>
+          Delete
+        </Button>
+      </div>
     )
+  );
 }
-
