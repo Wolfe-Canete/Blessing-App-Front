@@ -15,8 +15,8 @@ function App() {
       <Switch>
         <Route exact path='/' render={() => <Home/>}/>
         <Route exact path='/blessings' render={() => <BlessingList/>}/>
-        <Route exact path='/blessings/:id' render={(routerProps) => <BlessingDetail match={routerProps.match}/>}/>
         <Route exact path='/blessings/new' render={() => <BlessingForm/>}/>
+        <Route exact path='/blessings/:id' render={(routerProps) => <BlessingDetail match={routerProps.match}/>}/>
       </Switch>
     </div>
   );

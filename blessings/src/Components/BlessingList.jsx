@@ -6,7 +6,7 @@ export default function BlessingList() {
   const [blessings, setBlessings] = useState([])
 
   const fetchBlessings = async () => {
-    await fetch('http://127.0.0.1:8000/blessings/')
+    await fetch('https://nameless-citadel-52825.herokuapp.com/blessings/')
     .then(res => res.json())
     .then(res => {
       setBlessings(res)

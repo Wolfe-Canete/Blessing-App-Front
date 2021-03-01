@@ -5,7 +5,7 @@ export default function BlessingDetail({ match }) {
     const [blessedDetails, setblessedDetails] = useState(null);
 
     const fetchBlessingedDetails = async () => {
-        await fetch(`http://127.0.0.1:8000/blessings/${match.params.id}`)
+        await fetch(`https://nameless-citadel-52825.herokuapp.com/blessings/${match.params.id}`)
         .then(res => res.json())
         .then(res => {
             console.log(res)

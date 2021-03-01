@@ -5,30 +5,25 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 // import axios from "axios";
 import APIDataService from "../Components/Services/blessed.service";
-
 export default function BlessingForm(props) {
   const initialState = {
     author: "",
     title: "",
     content: "",
   };
-
   const [blessing, setBlessing] = useState(initialState);
   const [submitted, setSubmitted] = useState(false);
   // const history = useHistory();
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setBlessing({ ...blessing, [name]: value });
   };
-
   const saveBlessing = () => {
     var data = {
       author: blessing.author,
       title: blessing.title,
       content: blessing.content,
     };
-
     APIDataService.create(data)
       .then((res) => {
         setBlessing({
@@ -44,12 +39,10 @@ export default function BlessingForm(props) {
         console.log(e);
       });
   };
-
   const newBlessing = () => {
     setBlessing(initialState);
     setSubmitted(false);
   };
-
   return (
     <div className="new-blessing">
       {submitted ? (
@@ -70,7 +63,6 @@ export default function BlessingForm(props) {
               onChange={handleChange}
             />
           </Form.Group>
-
           <Form.Group className="input-title">
             <Form.Label>Title</Form.Label>
             <Form.Control
@@ -80,7 +72,6 @@ export default function BlessingForm(props) {
               onChange={handleChange}
             />
           </Form.Group>
-
           <Form.Group className="input-blessing">
             <Form.Label>Blessing</Form.Label>
             <Form.Control
@@ -91,7 +82,6 @@ export default function BlessingForm(props) {
               onChange={handleChange}
             />
           </Form.Group>
-
           <Button className="btn btn-Success" onClick={saveBlessing}>
             SUBMIT
           </Button>
