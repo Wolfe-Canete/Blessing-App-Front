@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from 'axios'
 // import { useHistory } from "react-router-dom";
 import "./styles/FormStyle.css";
 import Button from "react-bootstrap/Button";
@@ -7,6 +8,7 @@ import APIDataService from "../Components/Services/blessed.service";
 
 export default function BlessingForm(props) {
   const initialState = {
+    id: null,
     author: "",
     title: "",
     content: "",
@@ -18,28 +20,43 @@ export default function BlessingForm(props) {
     setBlessing({ ...blessing, [event.target.id]: event.target.value });
   };
 
-  const saveBlessing = () => {
-    var data = {
-      author: blessing.author,
-      title: blessing.title,
-      content: blessing.content,
-    };
-    APIDataService.create(data)
-      .then((res) => {
-        console.log(res)
-        setBlessing({
-          id: res.data.id,
-          author: res.data.author,
-          title: res.data.title,
-          content: res.data.content,
+  // const saveBlessing = () => {
+  //   var data = {
+  //     author: blessing.author,
+  //     title: blessing.title,
+  //     content: blessing.content,
+  //   };
+  //   APIDataService.create(data)
+  //     .then((res) => {
+  //       console.log("working" + res)
+  //       setBlessing({
+  //         id: res.data.id,
+  //         author: res.data.author,
+  //         title: res.data.title,
+  //         content: res.data.content,
+  //       });
+  //       setSubmitted(true);
+  //       console.log(res.data);
+  //     })
+  //     .catch((e) => {
+  //       console.log(e);
+  //     });
+  // };
+
+  const saveBlessing = async () => {
+    const url = "https://nameless-citadel-52825.herokuapp.com/blessings/"
+    const headers = { 'Content-Type': 'application/json' };
+    console.log(url)
+    try {
+       const res = await axios.post(url, blessing, {
+          headers: headers
         });
-        setSubmitted(true);
-        console.log(res.data);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
+        console.log(res.data)
+       return res.data._id;
+    } catch (error) {
+       console.error(error);
+    }
+ };
 
   const newBlessing = () => {
     setBlessing(initialState);
