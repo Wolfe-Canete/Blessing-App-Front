@@ -7,12 +7,13 @@ import BlessingDetail from './Components/BlessingDetail'
 import BlessingList from './Components/BlessingList';
 import BlessingForm from './Components/BlessingForm';
 import BlessingUpdate from './Components/BlessingUpdate';
+// import BlessingSearch from './Components/BlessingSearch';
 
 function App() {
   return (
     <div className="App">
       <Navigation/>
-
+      {/* <BlessingSearch/> */}
       <Switch>
         <Route exact path='/' render={() => <Home/>}/>
         <Route exact path='/blessings' render={() => <BlessingList/>}/>
