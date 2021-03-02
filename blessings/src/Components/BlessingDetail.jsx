@@ -42,6 +42,7 @@ export default function BlessingDetail({ match }) {
               {blessedDetails.author}
             </Card.Subtitle>
             <Card.Text>{blessedDetails.content}</Card.Text>
+            <Card.Link href={`/blessings/edit/${blessedDetails.id}`}>Edit Blessing</Card.Link>
           </Card.Body>
         </Card>
         <Button className="btn btn-Success" onClick={handleDelete}>
