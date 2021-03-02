@@ -3,8 +3,9 @@ import axios from 'axios'
 import "./styles/FormStyle.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { Link } from "react-router-dom"
 
-export default function BlessingForm(props) {
+export default function BlessingForm({ match}) {
   const initialState = {
     id: null,
     author: "",
@@ -77,9 +78,11 @@ export default function BlessingForm(props) {
               onChange={handleChange}
             />
           </Form.Group>
-          <Button className="btn btn-Success" onClick={saveBlessing}>
+          <Link to={`/blessings/`}>
+          <Button className="btn btn-Success" onClick={saveBlessing} href={`/blessings/edit/${blessing.id}`}>
             SUBMIT
           </Button>
+          </Link>
         </Form>
       )}
     </div>

@@ -1,11 +1,12 @@
-import Card from "react-bootstrap/Card";
 import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import Card from "react-bootstrap/Card";
 import axios from "axios";
 
 export default function BlessingDetail({ match }) {
   const [blessedDetails, setblessedDetails] = useState(null);
-  
+
   useEffect(() => {
     fetchBlessingDetails();
   });
@@ -20,7 +21,6 @@ export default function BlessingDetail({ match }) {
       console.log(error);
     }
   };
-  
 
   const handleDelete = async (id) => {
     try {
@@ -42,12 +42,16 @@ export default function BlessingDetail({ match }) {
               {blessedDetails.author}
             </Card.Subtitle>
             <Card.Text>{blessedDetails.content}</Card.Text>
-            <Card.Link href={`/blessings/edit/${blessedDetails.id}`}>Edit Blessing</Card.Link>
+            <Card.Link href={`/blessings/edit/${blessedDetails.id}`}>
+              Edit Blessing
+            </Card.Link>
           </Card.Body>
         </Card>
-        <Button className="btn btn-Success" onClick={handleDelete}>
-          Delete
-        </Button>
+        <Link to="/blessings">
+          <Button className="btn btn-Success" onClick={handleDelete}>
+            Delete
+          </Button>
+        </Link>
       </div>
     )
   );
