@@ -1,10 +1,8 @@
 import { useState } from "react";
 import axios from 'axios'
-// import { useHistory } from "react-router-dom";
 import "./styles/FormStyle.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import APIDataService from "../Components/Services/blessed.service";
 
 export default function BlessingForm(props) {
   const initialState = {
@@ -20,29 +18,6 @@ export default function BlessingForm(props) {
     setBlessing({ ...blessing, [event.target.id]: event.target.value });
   };
 
-  // const saveBlessing = () => {
-  //   var data = {
-  //     author: blessing.author,
-  //     title: blessing.title,
-  //     content: blessing.content,
-  //   };
-  //   APIDataService.create(data)
-  //     .then((res) => {
-  //       console.log("working" + res)
-  //       setBlessing({
-  //         id: res.data.id,
-  //         author: res.data.author,
-  //         title: res.data.title,
-  //         content: res.data.content,
-  //       });
-  //       setSubmitted(true);
-  //       console.log(res.data);
-  //     })
-  //     .catch((e) => {
-  //       console.log(e);
-  //     });
-  // };
-
   const saveBlessing = async () => {
     const url = "https://nameless-citadel-52825.herokuapp.com/blessings/"
     const headers = { 'Content-Type': 'application/json' };
@@ -56,7 +31,7 @@ export default function BlessingForm(props) {
     } catch (error) {
        console.error(error);
     }
- };
+  };
 
   const newBlessing = () => {
     setBlessing(initialState);
@@ -69,7 +44,7 @@ export default function BlessingForm(props) {
         <div>
           <h4>Youre blessing has been shared!</h4>
           <button className="btn btn-success" onClick={newBlessing}>
-            Add
+            Add New Blessing
           </button>
         </div>
       ) : (
