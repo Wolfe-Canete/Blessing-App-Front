@@ -35,7 +35,7 @@ const sortBlessing = [].concat(blessings)
               </Card.Body>
             </Card>
           </div>
-      )
+        )
       })
 
 

@@ -6,20 +6,16 @@ export default function Navigation() {
   return (
     <div>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Navbar.Brand href="#new_blessing">
+        <Navbar.Brand href="/">
           The Bite-Sized Book Of Itty Bitty Blessings
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
+            <Nav.Link href="/blessings">Blessings</Nav.Link>
             <Nav.Link href="/blessings/new">New Blessing</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-          </Nav>
-          <Nav>
-            <Nav.Link href="#deets">More deets</Nav.Link>
-            <Nav.Link eventKey={2} href="#memes">
-              Dank memes
-            </Nav.Link>
+            <Nav.Link href="#national-support">Find Support</Nav.Link>
+            <Nav.Link href="#deets">About</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
