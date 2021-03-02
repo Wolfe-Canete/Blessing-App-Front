@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom"
 
-export default function BlessingForm({ match}) {
+export default function BlessingForm({ match }) {
   const initialState = {
     id: null,
     author: "",

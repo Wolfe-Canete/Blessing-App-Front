@@ -9,3 +9,7 @@
 .card{
     margin: 1rem;
 }
+
+.card-body {
+    background-color: #DDCFD0
+}
