@@ -8,7 +8,7 @@ import axios from "axios";
 
 export default function BlessingDetail({ match }) {
   const [blessedDetails, setblessedDetails] = useState(null);
-  const [comment, setComment] = useState([])
+  const [comment, setComment] = useState(null)
 
   useEffect(() => {
     fetchBlessingDetails();
@@ -43,7 +43,13 @@ export default function BlessingDetail({ match }) {
     const url = `https://nameless-citadel-52825.herokuapp.com/comment/`
     const headers = { 'Content-Type': 'application/json' };
     try {
+    //   var comment2 = {
+    //     commenter: "me",
+    //     blessing:"32",
+    //     content: "This and Things"
+    // }
       const res = await axios.post(url, comment, {
+      // const res = await axios.post(url, comment2, {
         headers: headers
       });
       console.log(res.data)
@@ -69,27 +75,38 @@ export default function BlessingDetail({ match }) {
           </Card.Body>
 
           <ListGroup variant="flush">
+
             <Form.Group>
               
-                <Form.Label column lg={2}>
-                  Write a Comment
-                </Form.Label>
+              <Form.Label>
+                Write a Comment
+              </Form.Label>
 
-                <Form.Control
-                  id="commenter"
-                  type="text"
-                  placeholder="Name"
-                  onCange={handleChange}
-                />
-                
-                <Form.Control
-                  id="content"
-                  type="text"
-                  placeholder="Comments..."
-                  onCange={handleChange}
-                />
+              <Form.Control
+                id="commenter"
+                type="text"
+                placeholder="Name"
+                onChange={handleChange}
+              />
+              
+              {/* setComment = ${blessedDetails.id}*/}
+
+              <Form.Control
+                id="blessing"
+                type="text"
+                placeholder="ID"
+                onChange={handleChange}
+              />
+
+              <Form.Control
+                id="content"
+                type="text"
+                placeholder="Comment"
+                onChange={handleChange}
+              />
 
             </Form.Group>
+
             <Link to={`/blessings/${blessedDetails.id}`}>
               <Button className="btn btn-Success" onClick={saveComment}>
                   Share
