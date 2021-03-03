@@ -8,7 +8,7 @@ import BlessingDetail from './Components/BlessingDetail'
 import BlessingList from './Components/BlessingList';
 import BlessingForm from './Components/BlessingForm';
 import BlessingUpdate from './Components/BlessingUpdate';
-// import BlessingSearch from './Components/BlessingSearch';
+import CommentForm from './Components/CommentForm';
 
 function App() {
   return (
@@ -20,6 +20,7 @@ function App() {
         <Route exact path='/about' render={() => <About/>}/>
         <Route exact path='/blessings' render={() => <BlessingList/>}/>
         <Route exact path='/blessings/new' render={() => <BlessingForm/>}/>
+        <Route exact path='/comments/new' render={() => <CommentForm/>}/>
         <Route exact path='/blessings/:id' render={(routerProps) => <BlessingDetail match={routerProps.match}/>}/>
         <Route exact path='/blessings/edit/:id' render={(routerProps) => <BlessingUpdate match={routerProps.match}/>}/>
       </Switch>

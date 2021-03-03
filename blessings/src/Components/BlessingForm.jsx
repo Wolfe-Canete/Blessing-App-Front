@@ -22,15 +22,14 @@ export default function BlessingForm({ match }) {
   const saveBlessing = async () => {
     const url = "https://nameless-citadel-52825.herokuapp.com/blessings/"
     const headers = { 'Content-Type': 'application/json' };
-    console.log(url)
     try {
-       const res = await axios.post(url, blessing, {
-          headers: headers
-        });
-        console.log(res.data)
-       return res.data._id;
+      const res = await axios.post(url, blessing, {
+        headers: headers
+      });
+      console.log(res.data)
+      return res.data._id;
     } catch (error) {
-       console.error(error);
+      console.error(error);
     }
   };
 
@@ -78,8 +77,8 @@ export default function BlessingForm({ match }) {
               onChange={handleChange}
             />
           </Form.Group>
-          <Link to={`/blessings/`}>
-          <Button className="btn btn-Success" onClick={saveBlessing} href={`/blessings/edit/${blessing.id}`}>
+          <Link to={`/blessings`}>
+          <Button className="btn btn-Success" onClick={saveBlessing}>
             SUBMIT
           </Button>
           </Link>
