@@ -31,7 +31,7 @@ export default function BlessingList() {
             <Card.Text>
               {blessing.content}
             </Card.Text>
-            <Card.Link href={`/blessings/${blessing.id}`}>Blessing Details</Card.Link>
+            <Card.Link href={`/blessings/${blessing.id}`}>Share Your Thoughts</Card.Link>
           </Card.Body>
         </Card>
       </div>

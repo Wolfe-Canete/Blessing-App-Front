@@ -6,10 +6,11 @@
 }
 
 .about {
-    max-width: 50rem;
+    max-width: 70%;
     margin-left: auto;
     margin-right: auto;
 }
+
 
 /* .about-slide {
     margin-left: auto;
