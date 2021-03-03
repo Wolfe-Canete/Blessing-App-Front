@@ -71,7 +71,7 @@ export default function BlessingDetail({ match }) {
           <ListGroup variant="flush">
             <Form.Group>
               
-                <Form.Label column lg={2}>
+                <Form.Label>
                   Write a Comment
                 </Form.Label>
 
