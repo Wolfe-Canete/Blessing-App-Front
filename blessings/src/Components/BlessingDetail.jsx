@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import ListGroup from "react-bootstrap/ListGroup";
 import Card from "react-bootstrap/Card";
+import Form from "react-bootstrap/Form";
+import ListGroup from "react-bootstrap/ListGroup";
 import axios from "axios";
 
 export default function BlessingDetail({ match }) {
@@ -11,20 +12,8 @@ export default function BlessingDetail({ match }) {
 
   useEffect(() => {
     fetchBlessingDetails();
-    fetchComment();
   }, []);
-
-  const fetchBlessingDetails = async (id) => {
-    try {
-      const url = `https://nameless-citadel-52825.herokuapp.com/blessings/${match.params.id}`;
-
-      const response = await axios(url);
-      setblessedDetails(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+  
   const handleDelete = async (id) => {
     try {
       const url = `https://nameless-citadel-52825.herokuapp.com/blessings/${match.params.id}`;
@@ -35,23 +24,35 @@ export default function BlessingDetail({ match }) {
     }
   };
 
-
+  const handleChange = (event) => {
+    setComment({ ...comment, [event.target.id]: event.target.value });
+  };
   
-      const fetchComment = async () => {
-      try {
-        const url = `http://nameless-citadel-52825.herokuapp.com/comment`;
-  
-        const response = await axios(url);
-        setComment(response.data);
-      } catch (error) {
-        console.log(error);
-      }
+  const fetchBlessingDetails = async (id) => {
+    try {
+      const url = `https://nameless-citadel-52825.herokuapp.com/blessings/${match.params.id}`;
+      
+      const response = await axios(url);
+      setblessedDetails(response.data);
+    } catch (error) {
+      console.log(error);
     }
+  };
     
+  const saveComment = async () => {
+    const url = `https://nameless-citadel-52825.herokuapp.com/comment/`
+    const headers = { 'Content-Type': 'application/json' };
+    try {
+      const res = await axios.post(url, comment, {
+        headers: headers
+      });
+      console.log(res.data)
+      return res.data._id;
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-
-
-  console.log(comment)
   return (
     blessedDetails && (
       <div>
@@ -66,27 +67,54 @@ export default function BlessingDetail({ match }) {
               Edit Blessing
             </Card.Link>
           </Card.Body>
+
           <ListGroup variant="flush">
-          {comment.map((b) => {
-          return(
-            <div>
-             <ListGroup.Item>
-               Posted by: {b.commenter} 
-               <br/>
-               {b.content}
-             </ListGroup.Item> 
-            </div>
-          )
-        })}
-        </ListGroup>
+            <Form.Group>
+              
+                <Form.Label column lg={2}>
+                  Write a Comment
+                </Form.Label>
+
+                <Form.Control
+                  id="commenter"
+                  type="text"
+                  placeholder="Name"
+                  onCange={handleChange}
+                />
+                
+                <Form.Control
+                  id="content"
+                  type="text"
+                  placeholder="Comments..."
+                  onCange={handleChange}
+                />
+
+            </Form.Group>
+            <Link to={`/blessings/${blessedDetails.id}`}>
+              <Button className="btn btn-Success" onClick={saveComment}>
+                  Share
+              </Button>
+            </Link>
+            
+            {blessedDetails.comments.map((b) => {
+              return(
+                <div>
+                <ListGroup.Item>
+                  Posted by: {b.commenter} 
+                  <br/>
+                  {b.content}
+                </ListGroup.Item> 
+                </div>
+              )
+            })}
+          </ListGroup>
         </Card>
         <Link to="/blessings">
           <Button className="btn btn-Success" onClick={handleDelete}>
             Delete
           </Button>
         </Link>
-
       </div>
     )
-  );
+  )
 }
