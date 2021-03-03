@@ -1,0 +1,15 @@
+.aboutCards {
+    display:flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+
+@media only screen and (max-width: 768px) {
+    .aboutCards {
+        display:flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+}

@@ -1,0 +1,17 @@
+.homeCards {
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about {
+    max-width: 50rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* .about-slide {
+    margin-left: auto;
+    margin-right: auto;
+} */

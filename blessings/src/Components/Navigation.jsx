@@ -14,8 +14,8 @@ export default function Navigation() {
           <Nav className="mr-auto">
             <Nav.Link href="/blessings">Blessings</Nav.Link>
             <Nav.Link href="/blessings/new">New Blessing</Nav.Link>
-            <Nav.Link href="#national-support">Find Support</Nav.Link>
-            <Nav.Link href="#deets">About</Nav.Link>
+            <Nav.Link href="https://www.reddit.com/r/SeriousConversation/wiki/resources">Find Support</Nav.Link>
+            <Nav.Link href="/about">About</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
