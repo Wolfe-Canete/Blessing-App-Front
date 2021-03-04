@@ -5,15 +5,18 @@ import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import ListGroup from "react-bootstrap/ListGroup";
 import axios from "axios";
-
+import DetailStyle from "./styles/DetailStyle.css";
 export default function BlessingDetail({ match }) {
   const [blessedDetails, setblessedDetails] = useState(null);
-  const [comment, setComment] = useState(null)
-
+  const [comment, setComment] = useState({});
+  const [postComment, setPostComment] = useState({
+    blessing: match.params.id,
+    commenter: "",
+    content: "",
+  });
   useEffect(() => {
     fetchBlessingDetails();
   }, []);
-  
   const handleDelete = async (id) => {
     try {
       const url = `https://nameless-citadel-52825.herokuapp.com/blessings/${match.params.id}`;
@@ -23,42 +26,32 @@ export default function BlessingDetail({ match }) {
       console.log(error);
     }
   };
-
   const handleChange = (event) => {
-    setComment({ ...comment, [event.target.id]: event.target.value });
+    setPostComment({ ...postComment, [event.target.name]: event.target.value });
   };
-  
   const fetchBlessingDetails = async (id) => {
     try {
       const url = `https://nameless-citadel-52825.herokuapp.com/blessings/${match.params.id}`;
-      
       const response = await axios(url);
       setblessedDetails(response.data);
     } catch (error) {
       console.log(error);
     }
   };
-    
   const saveComment = async () => {
-    const url = `https://nameless-citadel-52825.herokuapp.com/comment/`
-    const headers = { 'Content-Type': 'application/json' };
+    const url = `https://nameless-citadel-52825.herokuapp.com/comment/`;
+    const headers = { "Content-Type": "application/json" };
     try {
-    //   var comment2 = {
-    //     commenter: "me",
-    //     blessing:"32",
-    //     content: "This and Things"
-    // }
-      const res = await axios.post(url, comment, {
-      // const res = await axios.post(url, comment2, {
-        headers: headers
+      const res = await axios.post(url, postComment, {
+        headers: headers,
       });
-      console.log(res.data)
+      console.log(res.data);
       return res.data._id;
     } catch (error) {
       console.error(error);
     }
   };
-
+  console.log(postComment.blessing);
   return (
     blessedDetails && (
       <div>
@@ -73,56 +66,49 @@ export default function BlessingDetail({ match }) {
               Edit Blessing
             </Card.Link>
           </Card.Body>
-
           <ListGroup variant="flush">
-
             <Form.Group>
-              
-              <Form.Label>
+              <Form.Label column lg={2}>
                 Write a Comment
               </Form.Label>
-
+              <Form.Control
+                hidden
+                id={match.params.id}
+                type="text"
+                value={postComment.blessing}
+              />
               <Form.Control
                 id="commenter"
+                name="commenter"
                 type="text"
                 placeholder="Name"
                 onChange={handleChange}
+                value={postComment.commenter}
               />
-              
-              {/* setComment = ${blessedDetails.id}*/}
-
-              <Form.Control
-                id="blessing"
-                type="text"
-                placeholder="ID"
-                onChange={handleChange}
-              />
-
               <Form.Control
                 id="content"
+                name="content"
                 type="text"
-                placeholder="Comment"
+                placeholder="Comments..."
                 onChange={handleChange}
+                value={postComment.content}
               />
-
             </Form.Group>
-
             <Link to={`/blessings/${blessedDetails.id}`}>
               <Button className="btn btn-Success" onClick={saveComment}>
-                  Share
+                Share
               </Button>
             </Link>
-            
             {blessedDetails.comments.map((b) => {
-              return(
+              return (
                 <div>
-                <ListGroup.Item>
-                  Posted by: {b.commenter} 
-                  <br/>
-                  {b.content}
-                </ListGroup.Item> 
+                  <ListGroup.Item>
+                    Posted by: {b.commenter}
+                    <br />
+                    {b.content}
+                  </ListGroup.Item>
                 </div>
-              )
+              );
             })}
           </ListGroup>
         </Card>
@@ -133,5 +119,5 @@ export default function BlessingDetail({ match }) {
         </Link>
       </div>
     )
-  )
+  );
 }
