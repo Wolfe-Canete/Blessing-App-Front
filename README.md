@@ -11,5 +11,14 @@ Welcome to **The Bite-Sized Book Of Itty Bitty Blessings (BoB)**. This we app is
 You can view the **(BoB)** [HERE]()!
 
 ## Deployment
-
 **(BoB)** Was deployed through [Heroku](https://www.heroku.com/), a publishing platform for interactive web-apps.
+
+## Interaction
+Upon visiting **(BoB)**, the user will be presented with the **Home Page** which features a little bit of information about what "mindfulness" is. In addition to short definition provided by *Oxford Languages* as well as more information on the purpose of being "mindful", there is a will also be offered a opportunity  to "**Share A Blessing**" at the bottom of the page, linking the user to the **Blessing Create Page**.
+
+![blessed_create]()
+
+It is required that the user fill out all fields provided in order to successful submit a new blessing. Having done so, the user may click the "**Submit**" button which will then route the user to the **Blessing List Page**. The most recent blessing will be shown at the top, as the **Blessing List Page** implements a "Last In, First Out" sorting method. From here the user may select any listed blessing to view and/or submit comments by click on the "**Share Your Thoughts**" link!
+
+![blessed_list]()
+
