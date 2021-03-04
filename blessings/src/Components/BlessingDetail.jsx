@@ -6,7 +6,6 @@ import Form from "react-bootstrap/Form";
 import ListGroup from "react-bootstrap/ListGroup";
 import axios from "axios";
 import DetailStyle from "./styles/DetailStyle.css";
-
 export default function BlessingDetail({ match }) {
   const [blessedDetails, setblessedDetails] = useState(null);
   const [comment, setComment] = useState({});
@@ -15,11 +14,9 @@ export default function BlessingDetail({ match }) {
     commenter: "",
     content: "",
   });
-
   useEffect(() => {
     fetchBlessingDetails();
   }, []);
-
   const handleDelete = async (id) => {
     try {
       const url = `https://nameless-citadel-52825.herokuapp.com/blessings/${match.params.id}`;
@@ -29,22 +26,18 @@ export default function BlessingDetail({ match }) {
       console.log(error);
     }
   };
-
   const handleChange = (event) => {
     setPostComment({ ...postComment, [event.target.name]: event.target.value });
   };
-
   const fetchBlessingDetails = async (id) => {
     try {
       const url = `https://nameless-citadel-52825.herokuapp.com/blessings/${match.params.id}`;
-
       const response = await axios(url);
       setblessedDetails(response.data);
     } catch (error) {
       console.log(error);
     }
   };
-
   const saveComment = async () => {
     const url = `https://nameless-citadel-52825.herokuapp.com/comment/`;
     const headers = { "Content-Type": "application/json" };
@@ -52,7 +45,6 @@ export default function BlessingDetail({ match }) {
       const res = await axios.post(url, postComment, {
         headers: headers,
       });
-
       console.log(res.data);
       return res.data._id;
     } catch (error) {
@@ -60,7 +52,6 @@ export default function BlessingDetail({ match }) {
     }
   };
   console.log(postComment.blessing);
-
   return (
     blessedDetails && (
       <div>
@@ -75,20 +66,17 @@ export default function BlessingDetail({ match }) {
               Edit Blessing
             </Card.Link>
           </Card.Body>
-
           <ListGroup variant="flush">
             <Form.Group>
               <Form.Label column lg={2}>
                 Write a Comment
               </Form.Label>
-
               <Form.Control
                 hidden
                 id={match.params.id}
                 type="text"
                 value={postComment.blessing}
               />
-
               <Form.Control
                 id="commenter"
                 name="commenter"
@@ -97,7 +85,6 @@ export default function BlessingDetail({ match }) {
                 onChange={handleChange}
                 value={postComment.commenter}
               />
-
               <Form.Control
                 id="content"
                 name="content"
@@ -112,7 +99,6 @@ export default function BlessingDetail({ match }) {
                 Share
               </Button>
             </Link>
-
             {blessedDetails.comments.map((b) => {
               return (
                 <div>
