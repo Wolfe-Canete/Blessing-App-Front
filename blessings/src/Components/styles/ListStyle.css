@@ -1,0 +1,15 @@
+.cards {
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+
+}
+.card{
+    margin: 0.5rem;
+}
+
+.card-body {
+    background-color: #DDCFD0
+}
