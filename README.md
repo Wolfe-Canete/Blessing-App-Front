@@ -8,7 +8,7 @@ Welcome to **The Bite-Sized Book Of Itty Bitty Blessings (BoB)**. This we app is
 ## About
 **(BoB)** was written in `React` and incorporates the usage of `JavaScript`, `React-Bootstrap`, and `CSS` with dependencies managed via `npm` . While `React` operates on the front-end, `PostgreSQL` operates in the back-end managed by `Django REST Framework` written in `Python`.
 
-You can view the **(BoB)** [HERE]()!
+You can view the **(BoB)** [HERE](https://itty-bitty-blessings.herokuapp.com/)!
 
 ## Deployment
 **(BoB)** Was deployed through [Heroku](https://www.heroku.com/), a publishing platform for interactive web-apps.
